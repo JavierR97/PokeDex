@@ -4,9 +4,9 @@ let pokemonList=[
 {name:"Squirtle", type:"Water", height: 0.5}
  ];
 
-pokemonList.forEach(function(pokemon) {
-  document.write(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + "</br>");
-});
+ pokemonList.forEach(function(pokemon) {
+   document.write(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + "</br>");
+ });
 
 // for (let i = 0; i < pokemonList.length; i++){
 //   document.write(pokemonList[i].name + " height:" + pokemonList[i].height + " ");
@@ -29,4 +29,5 @@ pokemonList.forEach(function(pokemon) {
 // //Sbulbasaur name, type, and height
 // console.log (pokemonList[2].name);
 // console.log(pokemonList[2].type);
-// console.log(pokemonList[2].height)
+// console.log(pokemonList[2].height;
+//
