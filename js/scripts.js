@@ -19,6 +19,8 @@ let pokemonRepository = (function () {
 })();
 
 // pokemonRepository returns an array of pokemonList
+//adds pikachu to array 
+pokemonRepository.add({ name: 'Pikachu', type:'Electric', height:'0.3' });
 pokemonRepository.getAll().forEach(function(pokemon) {
   document.write(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + "</br>");
 });
