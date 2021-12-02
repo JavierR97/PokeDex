@@ -19,11 +19,23 @@ let pokemonRepository = (function () {
 })();
 
 // pokemonRepository returns an array of pokemonList
-//adds pikachu to array 
-pokemonRepository.add({ name: 'Pikachu', type:'Electric', height:'0.3' });
+//adds pikachu to array
+
 pokemonRepository.getAll().forEach(function(pokemon) {
-  document.write(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + "</br>");
+  console.log(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + '</br>');
+  if (pokemon.height < 0.7) {
+    document.write('<p>' + pokemon.name + ' type: ' + pokemon.type +' height: ' + pokemon.height + '</p>')
+  }
+  if (pokemon.height >= 0.7) {
+    document.write('<p>' + pokemon.name + ' type: ' + pokemon.type +' height: ' + pokemon.height +' this is a big pokemon' + '</p>');
+  }
 });
 
-console.log(pokemonRepository.getAll());
-console.log(pokemonRepository.add({ name: 'Pikachu' }));
+// console.log(pokemonRepository.getAll());
+
+
+
+// pokemonRepository.add({ name: 'Pikachu', type:'Electric', height:'0.3' });
+// pokemonRepository.getAll().forEach(function(pokemon) {
+//   document.write(pokemon.name + " type: " + pokemon.type + " height: " + pokemon.height + "</br>");
+// });
