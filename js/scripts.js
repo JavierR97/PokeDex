@@ -1,5 +1,5 @@
 //IIFE
-let pokemonRepository = (function () {
+const pokemonRepository = (function () {
   const pokemonList = [];
 
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20';
@@ -82,8 +82,8 @@ let pokemonRepository = (function () {
   }
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
-    pokemonRepository.loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      loadDetails(pokemon).then(function () {
+        console.log(pokemon);
     });
   }
 
