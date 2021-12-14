@@ -6,16 +6,17 @@ const pokemonRepository = (function () {
   let modalContainer = document.querySelector('#modal-container');
   let modal = document.querySelector('.modal')
 
-  function add(pokemon) {
-     if (
-       typeof pokemon === "object" &&
-       "name" in pokemon
-     ) {
-       pokemonList.push(pokemon);
-     } else {
-       console.log("pokemon is not correct");
-     }
-   }
+    function add(pokemon) {
+      if (
+        typeof pokemon === "object" &&
+        "name" in pokemon
+      ) {
+        pokemonList.push(pokemon);
+      } else {
+        console.log("pokemon is not correct");
+      }
+    }
+
 //this function will return the pokemonList array when called
   function getAll(pokemon) {
     return pokemonList;
@@ -89,7 +90,7 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        showModal(pokemon.name);
+        showModal(pokemon.name , pokemon.types);
     });
   }
 
