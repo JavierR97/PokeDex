@@ -1,8 +1,9 @@
 //IIFE
 const pokemonRepository = (function () {
-  const pokemonList = [];
 
+  const pokemonList = [];
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20';
+  let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
      if (
@@ -20,16 +21,20 @@ const pokemonRepository = (function () {
   }
 
   function addListItem(pokemon) {
+
     //getting element that conects to an exsisting element
     const pokemonList = document.querySelector(".pokemon-list");
+
     // this creates a li element
     const listElement = document.createElement("li");
+
     //this creates a button element
     const button = document.createElement("button");
     // creates text inside of new element "button"
     button.innerText = pokemon.name;
     // assigning a class to element 'button'
     button.classList.add("button-class");
+
     // adding child to list element
     listElement.appendChild(button);
     // adding list element to pokemonList element
@@ -37,7 +42,7 @@ const pokemonRepository = (function () {
     /*eventListener listests for a click
     the function then console logs the showDetails function below */
     button.addEventListener('click', function (event) {
-      showDetails(pokemon);
+      showDetails(pokemon, modal);
    });
   }
 
@@ -83,9 +88,71 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        console.log(pokemon);
+        showModal(pokemon);
     });
   }
+
+  // modal
+  function showModal(title, text) {
+    modalContainer.innerHTML = '';
+
+    // created a div with a class called modal
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    /* creates a button element with the name of CloseButtonElement,
+    then adds a class called modal-close, with the innerText of that element saying "close" */
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'close';
+    /* listens for a click on closeButtonElement, if clicked run hideModal function  */
+    closeButtonElement.addEventListener('click', hideModal);
+
+    /* creates a h1 element with the name of titleElement with the innertext of that element saying "title" */
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    /* adds closeButtonElement, titleElement, and contentElement as children to .modal  */
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(titleElement);
+      modal.appendChild(contentElement);
+
+      /* after making the above elements children of '.modal' the whole model element now becomes a child of #modal-container in index.html*/
+      modalContainer.appendChild(modal);
+
+      modalContainer.classList.add('is-visible');
+
+  }
+
+  document.querySelector('.button-class').addEventListener ('click', () => {
+    showModal();
+  });
+  // function called hideModal
+  function hideModal() {
+    // this removes the class 'is-visable' from #modal-container when function is ran
+    modalContainer.classList.remove('is-visible');
+  }
+
+  // this is an event listener for a key click
+  window.addEventListener('keydown', (e) => {
+    // this argument says if the escape key is pressed while the modalContainer
+    // has the class '.is- visable' active then run hideModal function
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+  modalContainer.addEventListener('click', (e) => {
+    // Since this is also triggered when clicking INSIDE the modal
+    // We only want to close if the user clicks directly on the overlay
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  document.querySelector('.button-class').addEventListener ('click', () => {
+    showModal(pokemon.name);
+  });
 
   return {
     add: add,
@@ -98,9 +165,81 @@ const pokemonRepository = (function () {
 })();
 
 
-pokemonRepository.loadList().then(function () {
-  // pokemonRepository returns an array of pokemonLis
-  pokemonRepository.getAll().forEach(function(pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
-});
+// let showModal = (function () {
+//
+// let modalContainer = document.querySelector('#modal-container');
+// // function named showModal
+// function showModal(title, text){
+//
+//
+//   modalContainer.innerHTML = '';
+//
+//   // created a div with a class called modal
+//   let modal = document.createElement('div');
+//   modal.classList.add('modal');
+//
+//   /* creates a button element with the name of CloseButtonElement,
+//   then adds a class called modal-close, with the innerText of that element saying "close" */
+//   let closeButtonElement = document.createElement('button');
+//   closeButtonElement.classList.add('modal-close');
+//   closeButtonElement.innerText = 'close';
+//   /* listens for a click on closeButtonElement, if clicked run hideModal function  */
+//   closeButtonElement.addEventListener('click', hideModal);
+//
+//   /* creates a h1 element with the name of titleElement with the innertext of that element saying "title" */
+//   let titleElement = document.createElement('h1');
+//   titleElement.innerText = title;
+//
+//  /* creates a p element with the name of contentElement with the innertext of that element saying "text" */
+//   let contentElement =  document.createElement('p');
+//   contentElement.innerText = text;
+//
+// /* adds closeButtonElement, titleElement, and contentElement as children to .modal  */
+//   modal.appendChild(closeButtonElement);
+//   modal.appendChild(titleElement);
+//   modal.appendChild(contentElement);
+//
+//   /* after making the above elements children of '.modal' the whole model element now becomes a child of #modal-container in index.html*/
+//   modalContainer.appendChild(modal);
+//
+//   modalContainer.classList.add('is-visible');
+// }
+//
+// // function called hideModal
+// function hideModal() {
+//   // this removes the class 'is-visable' from #modal-container when function is ran
+//   modalContainer.classList.remove('is-visible');
+// }
+//
+// // this is an event listener for a key click
+// window.addEventListener('keydown', (e) => {
+//   // this argument says if the escape key is pressed while the modalContainer
+//   // has the class '.is- visable' active then run hideModal function
+//   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+//     hideModal();
+//   }
+// });
+//
+// modalContainer.addEventListener('click', (e) => {
+//   // Since this is also triggered when clicking INSIDE the modal
+//   // We only want to close if the user clicks directly on the overlay
+//   let target = e.target;
+//   if (target === modalContainer) {
+//     hideModal();
+//   }
+// });
+//
+//
+// document.querySelector('#show-modal').addEventListener ('click', () => {
+//   showModal();
+// });
+//
+// })();
+//
+//
+// pokemonRepository.loadList().then(function () {
+//   // pokemonRepository returns an array of pokemonLis
+//   pokemonRepository.getAll().forEach(function(pokemon) {
+//     pokemonRepository.addListItem(pokemon);
+//   });
+// });
