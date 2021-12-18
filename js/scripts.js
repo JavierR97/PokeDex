@@ -9,7 +9,8 @@ const pokemonRepository = (function () {
     function add(pokemon) {
       if (
         typeof pokemon === "object" &&
-        "name" in pokemon
+        "name" in pokemon &&
+        "detailsUrl" in pokemon
       ) {
         pokemonList.push(pokemon);
       } else {
@@ -44,7 +45,7 @@ const pokemonRepository = (function () {
     /*eventListener listests for a click
     the function then console logs the showDetails function below */
     button.addEventListener('click', function (event) {
-      showDetails(pokemon, modal);
+      showDetails(pokemon, pokemon.imageUrl, modal);
    });
   }
 
@@ -74,7 +75,7 @@ const pokemonRepository = (function () {
   function loadDetails(item) {
     /* created a variable and it is = to detailsUrl.
      detailsUrl comes from the above function (loadList) */
-    const url = item.detailsUrl;
+    let url = item.detailsUrl;
     /*gets repsonse of the url and turns it into a JSON*/
     return fetch(url).then(function (response){
       return response.json();
@@ -90,12 +91,12 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        showModal(pokemon.name , pokemon.types);
+        showModal(pokemon.name, pokemon.imageUrl, "height: " + pokemon.height );
     });
   }
 
   // modal
-  function showModal(title, text) {
+  function showModal(title, img, text) {
     modalContainer.innerHTML = '';
 
     // created a div with a class called modal
@@ -113,6 +114,9 @@ const pokemonRepository = (function () {
     let titleElement = document.createElement('h1');
     titleElement.innerText = title;
 
+    let imageElement = document.createElement('img')
+    imageElement.src= pokemon.imageUrl
+
      /* creates a p element with the name of contentElement with the innertext of that element saying "text" */
       let contentElement =  document.createElement('p');
       contentElement.innerText = text;
@@ -120,7 +124,8 @@ const pokemonRepository = (function () {
     /* adds closeButtonElement, titleElement, and contentElement as children to .modal  */
       modal.appendChild(closeButtonElement);
       modal.appendChild(titleElement);
-      modal.appendChild(contentElement)
+      modal.appendChild(imageElement)
+      modal.appendChild(contentElement);
       // modal.appendChild(contentElement);
 
       /* after making the above elements children of '.modal' the whole model element now becomes a child of #modal-container in index.html*/
@@ -171,9 +176,67 @@ const pokemonRepository = (function () {
   };
 })();
 
+
 pokemonRepository.loadList().then(function () {
     let getAllPokemon = pokemonRepository.getAll();
     getAllPokemon.forEach(function (getPokemon) {
         pokemonRepository.addListItem(getPokemon);
     });
 });
+
+pokemonRepository.loadDetails().then(function () {
+    let getAllPokemon = pokemonRepository.getAll();
+    getAllPokemon.forEach(function (getPokemon) {
+        pokemonRepository.addListItem(getPokemon);
+    });
+});
+
+// pokemonRepository.loadTypes().then(function () {
+//     let getPokemonTypes = pokemonRepository.showTypes();
+//     getPokemonTypes.forEach(function (pokemonTypes) {
+//         pokemonRepository.addListItem(pokemonTypes);
+//     });
+// });
+
+ /* this goes under load list*/
+// function loadTypes() {
+//
+//   return fetch(apiUrl).then(function (response) {
+//     return response.json();
+//   }).then(function (json) {
+//     json.results.forEach(function (item) {
+//       const pokemonTypes = {
+//         detailsUrl: item.url,
+//         types: item.types,
+//       };
+//       add(pokemonTypes);
+//       console.log(pokemonTypes);
+//     });
+//   }).catch(function (e) {
+//     console.error(e);
+//   })
+// }
+
+/*this goes under showDetails*/
+// function showTypes(pokemonTypes) {
+//     loadTypes(pokemonTypes).then(function () {
+//       showModal(pokemon.name, pokemon.types);
+//   });
+// }
+
+// function loadDetails(item) {
+//   /* created a variable and it is = to detailsUrl.
+//    detailsUrl comes from the above function (loadList) */
+//   const url = item.detailsUrl;
+//   /*gets repsonse of the url and turns it into a JSON*/
+//   return fetch(url).then(function (response){
+//     return response.json();
+//   }).then(function (details) {
+//     //this adds the details from the API
+//     item.imageUrl = details.sprites.front_default;
+//     item.height = details.height;
+//     item.types = details.types;
+//   }).catch(function (e) {
+//     console.error(e)
+//   });
+// }
