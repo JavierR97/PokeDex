@@ -93,12 +93,14 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        showModal(pokemon.name, pokemon.imageUrl + " height: " + pokemon.height);
+        let pokeImage = document.querySelector('pokemon_img');
+        pokeImage.src = pokemon.imageUrl;
+        showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height);
     });
   }
 
   // modal
-  function showModal(title,text) {
+  function showModal(title, img, text) {
     modalContainer.innerHTML = '';
 
     // created a div with a class called modal
@@ -110,14 +112,20 @@ const pokemonRepository = (function () {
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'close';
+
     /* listens for a click on closeButtonElement, if clicked run hideModal function  */
     closeButtonElement.addEventListener('click', hideModal);
+
     /* creates a h1 element with the name of titleElement with the innertext of that element saying "title" */
     let titleElement = document.createElement('h1');
     titleElement.innerText = title;
 
+    // imageElement
      let myImage = document.createElement('img');
-     myImage.src = pokemon.imageUrl;
+     myImage.classList.add('pokemon_img')
+     myImage.innerText = img;
+
+
 
      /* creates a p element with the name of contentElement with the innertext of that element saying "text" */
       let contentElement =  document.createElement('p');
@@ -127,7 +135,6 @@ const pokemonRepository = (function () {
       modal.appendChild(titleElement);
       modal.appendChild(myImage);
       modal.appendChild(contentElement);
-      // modal.appendChild(contentElement);
 
       /* after making the above elements children of '.modal' the whole model element now becomes a child of #modal-container in index.html*/
       modalContainer.appendChild(modal);
