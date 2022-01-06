@@ -76,7 +76,7 @@ header {
 }
 
 .modal {
-  margin: auto;
+  margin-top: 300px;
   display: inline-block;
   box-sizing: border-box;
   background: #fff;
