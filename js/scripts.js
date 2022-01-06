@@ -93,8 +93,6 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        let pokeImage = document.querySelector('pokemon_img');
-        pokeImage.src = pokemon.imageUrl;
         showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height);
     });
   }
@@ -123,8 +121,7 @@ const pokemonRepository = (function () {
     // imageElement
      let myImage = document.createElement('img');
      myImage.classList.add('pokemon_img')
-     myImage.innerText = img;
-
+     myImage.src = img;
 
 
      /* creates a p element with the name of contentElement with the innertext of that element saying "text" */
