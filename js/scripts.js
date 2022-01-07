@@ -93,7 +93,14 @@ const pokemonRepository = (function () {
   //exicutes loadDetails Function then console logs the results
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height);
+        // defined empty array variable
+        let types = [];
+        //this goes into the types item and cycles over each item until it gets to type then name and pushes the Name objects value
+        pokemon.types.forEach((item, i) => {
+          types.push(item.type.name);
+        });
+
+        showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height + ' types: ' + types.join(','));
     });
   }
 
