@@ -50,7 +50,70 @@ header {
   align-items:center;
   padding-top: 30px;
 }
-/* modal */
+
+.pokemon_img {
+  display:block;
+  width: 100px;
+  height:100px;
+}
+
+
+
+
+/*
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
+  width:100%;
+}
+
+.logo {
+  width: 4%;
+  margin:7px;
+}
+
+.button-class {
+  display:grid;
+  grid-template-columns: 100px;
+  grid-template-rows: repeat(20, 20%);
+  margin: 1px;
+  padding:10px 40px;
+  background-color: rgba(120, 193, 255, 0);
+  border: 2px solid red;
+  border-radius: 10px;
+  transition: .6s;
+}
+
+.button-class:hover {
+  background-color: rgba(120, 193, 255, .2);
+}
+#my-button{
+  display:flex;
+  padding-top:10px;
+  flex-direction:column;
+  align-items: center;
+}
+
+#my-button li {
+  list-style:none;
+}
+#remove-button {
+  display:none;
+}
+.pokedex_header {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  padding-top: 30px;
+}
+
 
 
 
@@ -64,13 +127,13 @@ header {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 
-  /* to show it above other content */
+
   z-index: 999;
 
-  /* to allow scrolling if the screen is not high enough*/
+
   overflow: auto;
 
-  /* this is used to center the modal */
+
   display: grid;
   text-align: center;
 }
@@ -108,7 +171,7 @@ header {
 }
 
 #modal-container.is-visible {
-  /* CSS for modal container - add your own desired CSS styles here */
+
   display: block;
 }
 
@@ -116,4 +179,4 @@ header {
   display:block;
   width: 100px;
   height:100px;
-}
+} */
