@@ -1,3 +1,3 @@
 # PokeDex
 
-this project uses [link](https://pokeapi.co/) to get the gen1 Pokemon information.
+this project uses [pokeApi](https://pokeapi.co/) to get the gen1 Pokemon information.
