@@ -4,14 +4,8 @@
   padding:0;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  background-color: lightblue;
-  width:100%;
-}
-
 .logo {
+  cursor: pointer;
   width: 4%;
   margin:7px;
 }
