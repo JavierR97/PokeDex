@@ -4,7 +4,7 @@ this project uses [pokeApi](https://pokeapi.co/) to get the gen1 Pokemon informa
 
 ## tools
 
-*HTML
-*JS
-*CSS
-*BOOTSTRAP
+* HTML
+* JS
+* CSS
+* BOOTSTRAP
