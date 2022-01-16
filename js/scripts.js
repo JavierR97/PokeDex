@@ -39,7 +39,7 @@ const pokemonRepository = (function () {
     button.classList.add("button-class", "btn", "btn-outline-info", "col-3", "d-grid");
 
     $(document).ready(function(){
-    $(".button-class").click(function(){
+    $(button).click(function(){
     showDetails(pokemon);
     $("#exampleModal").modal();
   });
@@ -87,6 +87,7 @@ const pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      item.weight = details.weight;
     }).catch(function (e) {
       console.error(e)
     });
@@ -101,6 +102,8 @@ const pokemonRepository = (function () {
           pokemon.types.forEach((item, i) => {
             types.push(item.type.name);
           });
+
+
         showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height, 'weight: ' + pokemon.weight, ' types: ' + types.join(','));
     });
   }
@@ -118,19 +121,18 @@ const pokemonRepository = (function () {
     let nameElement = document.createElement('h1');
     nameElement.innerText = name;
 
+   let imageElement = document.createElement('img');
+   imageElement.classList.add('pokemon_img')
+   imageElement.src = img;
 
-    let imageElement = $('<img class="modal-img" style="width:50%">');
-    imageElement.attr("src", img);
-    imageElement.src = img;
 
-
-    let heightElement = $("<p>" + "height: " + height +"</p>");
+    let heightElement = document.createElement('p');
     heightElement.innerText = height;
 
-    let weightElement = $("<p>" + "weight: " + weight);
+    let weightElement = document.createElement('p');
     weightElement.innerText = weight;
 
-    let typeElement = $("<p>" + "types: " + types + "</p>");
+    let typeElement = document.createElement('p');
     typeElement.innerText = types;
 
     modalTitle.append(nameElement);
