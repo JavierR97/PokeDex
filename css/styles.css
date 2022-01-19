@@ -13,3 +13,11 @@
 .button-class {
   margin: 5px;
 }
+
+#hide_button {
+  display: none;
+}
+
+.pokedex_header {
+  margin-top: 100px;
+}
