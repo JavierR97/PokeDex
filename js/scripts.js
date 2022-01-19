@@ -2,7 +2,7 @@
 const pokemonRepository = (function () {
 
   const pokemonList = [];
-  const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20';
+  const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=100';
   // let modal = document.querySelector('#exampleModal');
 
     function add(pokemon) {
