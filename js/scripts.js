@@ -51,7 +51,6 @@ const pokemonRepository = (function () {
     pokemonList.appendChild(listElement);
   }
 
-
   function loadList() {
     /* this fetches my apiUrl varialble  and converts the
     response to a JSON (JavaScript Object Notation)*/
@@ -121,9 +120,9 @@ const pokemonRepository = (function () {
     let nameElement = document.createElement('h1');
     nameElement.innerText = name;
 
-   let imageElement = document.createElement('img');
-   imageElement.classList.add('pokemon_img')
-   imageElement.src = img;
+    let imageElement = document.createElement('img');
+    imageElement.classList.add('pokemon_img')
+    imageElement.src = img;
 
 
     let heightElement = document.createElement('p');
@@ -141,9 +140,7 @@ const pokemonRepository = (function () {
     modalBody.append(weightElement);
     modalBody.append(typeElement);
 
-
 }
-
 
   return {
     add: add,
@@ -157,7 +154,7 @@ const pokemonRepository = (function () {
 
 pokemonRepository.loadList().then(function () {
     let getAllPokemon = pokemonRepository.getAll();
-    getAllPokemon.forEach(function (getPokemon) {
-        pokemonRepository.addListItem(getPokemon);
+      getAllPokemon.forEach(function (getPokemon) {
+      pokemonRepository.addListItem(getPokemon);
     });
 });
