@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 //IIFE
 const pokemonRepository = (function () {
 
@@ -7,13 +9,13 @@ const pokemonRepository = (function () {
 
     function add(pokemon) {
       if (
-        typeof pokemon === "object" &&
-        "name" in pokemon &&
-        "detailsUrl" in pokemon
+        typeof pokemon === 'object' &&
+        'name' in pokemon &&
+        'detailsUrl' in pokemon
       ) {
         pokemonList.push(pokemon);
       } else {
-        console.log("pokemon is not correct");
+        console.log('pokemon is not correct');
       }
     }
 
@@ -25,23 +27,23 @@ const pokemonRepository = (function () {
   function addListItem(pokemon) {
 
     //getting element that conects to an exsisting element
-    const pokemonList = document.querySelector(".pokemon-list");
+    const pokemonList = document.querySelector('.pokemon-list');
 
     // this creates a li element
-    const listElement = document.createElement("li");
-    listElement.classList.add("group-list-item")
+    const listElement = document.createElement('li');
+    listElement.classList.add('group-list-item')
 
     //this creates a button element
-    const button = document.createElement("button");
+    const button = document.createElement('button');
     // creates text inside of new element "button"
     button.innerText = pokemon.name;
     // assigning a class to element 'button'
-    button.classList.add("button-class", "btn", "btn-outline-info", "col-3", "d-grid");
+    button.classList.add('button-class', 'btn', 'btn-outline-info', 'col-3', 'd-grid');
 
     $(document).ready(function(){
     $(button).click(function(){
     showDetails(pokemon);
-    $("#exampleModal").modal();
+    $('#exampleModal').modal();
   });
 });
 
@@ -98,21 +100,19 @@ const pokemonRepository = (function () {
         // defined empty array variable
           let types = [];
           //this goes into the types item and cycles over each item until it gets to type then name and pushes the Name objects value
-          pokemon.types.forEach((item, i) => {
+          pokemon.types.forEach((item) => {
             types.push(item.type.name);
           });
 
 
-        showModal(pokemon.name, pokemon.imageUrl ," height: " + pokemon.height, 'weight: ' + pokemon.weight, ' types: ' + types.join(','));
+        showModal(pokemon.name, pokemon.imageUrl ,' height: ' + pokemon.height, 'weight: ' + pokemon.weight, ' types: ' + types.join(','));
     });
   }
 
   // modal
   function showModal(name, img, height, weight, types) {
-    let modal = document.querySelector('#exampleModal');
-    let modalBody = document.querySelector(".modal-body");
-    let modalTitle = document.querySelector("#exampleModalLabel");
-    let modalDialog = document.querySelector(".modal-dialog");
+    let modalBody = document.querySelector('.modal-body');
+    let modalTitle = document.querySelector('#exampleModalLabel');
 
     $('#exampleModalLabel').empty();
     $('.modal-body').empty();
